@@ -3,18 +3,33 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app.component';
-import { SeriesModule } from './series/series-module';
+
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { HttpErrorInterceptorService } from './interceptors/http-error-interceptor.service';
+
+import { SeriesModule } from './series/series.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SeriesModule
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
+    SeriesModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

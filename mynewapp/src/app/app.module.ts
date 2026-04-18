@@ -8,6 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpErrorInterceptorService } from './interceptors/http-error-interceptor.service';
 import { SeriesModule } from './series/series.module';
 
+
 @NgModule({
   declarations: [App],
   imports: [

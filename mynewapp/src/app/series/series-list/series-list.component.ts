@@ -1,17 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Serie } from '../serie';
+import { SeriesService } from '../series.service';
 
 @Component({
   selector: 'app-series-list',
+  standalone: false,
   templateUrl: './series-list.component.html',
-  styleUrls: ['./series-list.component.css']
+  styleUrl: './series-list.component.css',
 })
 export class SeriesListComponent implements OnInit {
 
   series: Array<Serie> = [];
 
-  constructor() {}
+  constructor(private seriesService: SeriesService) {}
 
-  ngOnInit(): void {}
+  getSeries(): void {
+    this.seriesService.getSeries().subscribe((series) => {
+      this.series = series;
+    });
+  }
 
+  ngOnInit(): void {
+    this.getSeries();
+  }
 }

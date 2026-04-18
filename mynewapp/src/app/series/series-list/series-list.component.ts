@@ -11,13 +11,23 @@ import { SeriesService } from '../series.service';
 export class SeriesListComponent implements OnInit {
 
   series: Array<Serie> = [];
+  averageSeasons: number = 0;
 
   constructor(private seriesService: SeriesService) {}
 
   getSeries(): void {
     this.seriesService.getSeries().subscribe((series) => {
       this.series = series;
+      this.calculateAverage();
     });
+  }
+
+  calculateAverage(): void {
+    let total = 0;
+    this.series.forEach(serie => {
+      total += serie.seasons;
+    });
+    this.averageSeasons = total / this.series.length;
   }
 
   ngOnInit(): void {

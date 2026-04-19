@@ -16,11 +16,12 @@ export class SeriesListComponent implements OnInit {
   constructor(private seriesService: SeriesService) {}
 
   getSeries(): void {
-    this.seriesService.getSeries().subscribe((series) => {
-      this.series = series;
-      this.calculateAverage();
-    });
-  }
+  this.seriesService.getSeries().subscribe((series) => {
+    console.log("DATA:", series); 
+    this.series = series;
+    this.calculateAverage();
+  });
+}
 
   calculateAverage(): void {
     let total = 0;

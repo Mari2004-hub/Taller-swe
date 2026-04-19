@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
-import { App } from './app';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { AppComponent } from './app.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpErrorInterceptorService } from './interceptors/http-error-interceptor.service';
 import { SeriesModule } from './series/series.module';
 
 
 @NgModule({
-  declarations: [App],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,6 +30,6 @@ import { SeriesModule } from './series/series.module';
       multi: true,
     },
   ],
-  bootstrap: [App],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

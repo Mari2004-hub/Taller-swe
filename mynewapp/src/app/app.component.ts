@@ -3,7 +3,7 @@ import { SeriesModule } from "./series/series.module";
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  imports: [SeriesModule]
+  standalone: false,
+  templateUrl: './app.component.html'
 })
 export class AppComponent {}

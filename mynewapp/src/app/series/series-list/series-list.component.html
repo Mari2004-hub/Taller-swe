@@ -1,24 +1,26 @@
-<h1>TV Series</h1>
+<div class="container">
+  <h1>TV Series</h1>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Channel</th>
-      <th>Seasons</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (serie of series; track serie.id) {
+  <table class="table table-striped">
+    <thead class="table-dark">
       <tr>
-        <td>{{ serie.id }}</td>
-        <td>{{ serie.name }}</td>
-        <td>{{ serie.channel }}</td>
-        <td>{{ serie.seasons }}</td>
+        <th>#</th>
+        <th>Name</th>
+        <th>Channel</th>
+        <th>Seasons</th>
       </tr>
-    }
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      @for (serie of series; track serie.id) {
+        <tr>
+          <td>{{ serie.id }}</td>
+          <td>{{ serie.name }}</td>
+          <td>{{ serie.channel }}</td>
+          <td>{{ serie.seasons }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
 
-<p><strong>Average Seasons:</strong> {{ averageSeasons }}</p>
+  <p><strong>Average Seasons:</strong> {{ averageSeasons }}</p>
+</div>

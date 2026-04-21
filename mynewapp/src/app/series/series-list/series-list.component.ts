@@ -11,6 +11,7 @@ import { SeriesService } from '../series.service';
 export class SeriesListComponent implements OnInit {
 
   series: Array<Serie> = [];
+  selectedSerie: Serie | null = null;
   averageSeasons: number = 0;
 
   constructor(
@@ -21,17 +22,19 @@ export class SeriesListComponent implements OnInit {
   getSeries(): void {
     this.seriesService.getSeries().subscribe((data) => {
       this.series = data;
-      console.log(this.series); 
+      this.selectedSerie = this.series[0]; 
       this.calculateAverage();
-      this.cdr.detectChanges(); 
+      this.cdr.detectChanges();
     });
+  }
+
+  selectSerie(serie: Serie): void {
+    this.selectedSerie = serie;
   }
 
   calculateAverage(): void {
     let total = 0;
-    this.series.forEach(serie => {
-      total += serie.seasons;
-    });
+    this.series.forEach(s => total += s.seasons);
     this.averageSeasons = total / this.series.length;
   }
 

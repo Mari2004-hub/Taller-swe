@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Serie } from '../serie';
 import { SeriesService } from '../series.service';
 
@@ -13,15 +13,19 @@ export class SeriesListComponent implements OnInit {
   series: Array<Serie> = [];
   averageSeasons: number = 0;
 
-  constructor(private seriesService: SeriesService) {}
+  constructor(
+    private seriesService: SeriesService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   getSeries(): void {
-  this.seriesService.getSeries().subscribe((series) => {
-    console.log("DATA:", series); 
-    this.series = series;
-    this.calculateAverage();
-  });
-}
+    this.seriesService.getSeries().subscribe((data) => {
+      this.series = data;
+      console.log(this.series); 
+      this.calculateAverage();
+      this.cdr.detectChanges(); 
+    });
+  }
 
   calculateAverage(): void {
     let total = 0;
